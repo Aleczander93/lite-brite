@@ -1,20 +1,25 @@
 (function() {
-  var numberOfRows = 40; //number of rows in the grid
-  var numberOfCols = 40; //number of columns in the grid
+  // var numberOfRows = 20; //number of rows in the grid
+  // var numberOfCols = 20; //number of columns in the grid
   var canvas = $('#canvas'); //my placement are + think of paper in drawing
 
-
-
-makeGrid();
+makeGrid(15, 15);
+clearGrid();
+makeGrid(30, 30);
 var cells = $('.cell');
-$('.cell').on('mouseover', changeColor);
+$('.cell').on('click', changeColor);
+
+function clearGrid(){
+  canvas.empty();
+}
+
 
 function changeColor(event){
   //just this cell's background
   $(this).toggleClass('red');
 }
 
-function makeGrid(){
+function makeGrid(numberOfRows, numberOfCols){
   //let's make some rows and put them in the body
 for(var rowCount = 0; rowCount < numberOfRows; rowCount += 1){
   var row = $('<tr></tr>');
@@ -25,6 +30,5 @@ for(var rowCount = 0; rowCount < numberOfRows; rowCount += 1){
   }
     canvas.append(row);
     }
-
 }
   }());

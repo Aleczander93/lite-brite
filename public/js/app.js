@@ -3,36 +3,45 @@
   var updateGridButton = $ ('#update-grid-button');
   var numberOfColsInput = $('#number-of-cols');
   var numberOfRowsInput = $('#number-of-rows');
+  var blueButton = $('#blue-button');
 
 makeGrid(15, 15);
 
 $('.cell').on('click', changeColor);
+blueButton.on('click', blueButtonOn);
 updateGridButton.on('click', updateGridSize);
+// updateGridButton.attr("disabled", false);
 // clearGrid();
 // makeGrid(30, 30);
 
+//if column || rows = nothing --> do not update
 
 function updateGridSize() {
   clearGrid(); //remove current grid
-  //grab number of columns from the inpur for the new grid
+  //grab number of columns from the input for the new grid
   var newColumnNumber = parseInt(numberOfColsInput.val());
   //grab number of rows from the input for the new grid
   var newRowNumber = parseInt(numberOfRowsInput.val());
   //make the new grid based on the rows of columns
   makeGrid(newRowNumber, newColumnNumber);
   $('.cell').on('click', changeColor);
+  $('.cell').on('click', blueButtonOn);
 }
-
-
 
 function clearGrid(){
   canvas.empty();
 }
 
-
 function changeColor(event){
   //just this cell's background
   $(this).toggleClass('red');
+}
+
+function blueButtonOn(event){
+  $('.cell').on('click', function(){
+  $(this).toggleClass('blue');
+});
+
 }
 
 function makeGrid(numberOfRows, numberOfCols){

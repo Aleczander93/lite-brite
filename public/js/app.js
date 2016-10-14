@@ -9,9 +9,9 @@
   var blueButton = $('#blue-button');
   var greenButton = $('#green-button');
   var orangeButton = $('#orange-button');
-  var max_chars = 1;
+  var max_chars = 2;
 
-makeGrid(15, 15);
+makeGrid(20, 30);
 $('.cell').on('click', changeColor);
 redButton.on('click', redButtonOn);
 blueButton.on('click', blueButtonOn);
@@ -53,6 +53,23 @@ $('#number-of-rows').keyup( function(e){
 
 function updateGridSize() {
 
+  $('number-of-cols').keyup(function(e){
+    if ($(this).val().length < max_chars) {
+    $('#update-grid-button').disabled = true;
+  } else {
+    $('#update-grid-button').disabled = false;
+  }
+  });
+
+
+  $('number-of-rows').keyup(function(e){
+    if ($(this).val().length < max_chars) {
+    $('#update-grid-button').disabled = true;
+  } else {
+    $('#update-grid-button').disabled = false;
+  }
+  });
+
   clearGrid(); //remove current grid
   //grab number of columns from the input for the new grid
   var newColumnNumber = parseInt(numberOfColsInput.val());
@@ -60,10 +77,11 @@ function updateGridSize() {
   var newRowNumber = parseInt(numberOfRowsInput.val());
   //make the new grid based on the rows of columns
   makeGrid(newRowNumber, newColumnNumber);
-  $('.cell').on('click', changeColor);
+  $('.btn-danger').on('click', redButtonOn);
   $('.btn-primary').on('click', blueButtonOn);
   $('.btn-success').on('click', greenButtonOn);
   $('.btn-warning').on('click', orangeButtonOn);
+
 }
 
 function clearGrid(){
@@ -71,7 +89,7 @@ function clearGrid(){
 }
 
 function clearGridButtonOn(event){
-    $('.cell').on('click', changeColor);
+    $('.cell').off('click');
 }
 
 function changeColor(event){
@@ -118,5 +136,6 @@ for(var rowCount = 0; rowCount < numberOfRows; rowCount+=1){
   }
     canvas.append(row);
     }
+
 }
   }());

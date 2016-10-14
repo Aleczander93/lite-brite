@@ -1,7 +1,9 @@
-
-
 h1 {
   color:black;
+}
+
+nav {
+
 }
 
 .form-control {
@@ -18,8 +20,24 @@ h1 {
 .form-group{
   display:flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
+.form-item{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 35px;
+  margin-top: 15px;
+}
+
+.btn-item{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 5px;
+}
 
 /*.btn-group{
   display:flex;
@@ -56,4 +74,5 @@ h1 {
 button {
   display:flex;
   flex-direction:row;
+  margin-top:15px;
 }

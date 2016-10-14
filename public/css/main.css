@@ -1,7 +1,40 @@
+
+
+h1 {
+  color:black;
+}
+
+.form-control {
+  width:65px;
+}
+
+.container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.form-group{
+  display:flex;
+  flex-direction: row;
+}
+
+
+/*.btn-group{
+  display:flex;
+  flex-direction: row;
+}*/
+
 .cell {
   width: 16px;
   height: 16px;
+  background-color: black;
   border: 1px solid black;
+}
+
+.white {
+  background-color: white;
 }
 
 .red {

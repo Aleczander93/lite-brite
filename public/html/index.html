@@ -11,42 +11,30 @@
   <div class="page-header text-center">
     <h1>Lite-Brite</h1>
   </div>
+<nav class="navbar navbar-default">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
         <div class="form-group">
-          <label for="number-of-rows">Please enter the numer of rows:</label>
-          <input type="text" id=number-of-rows class="form-control" maxlength="2" >
-        </div>
-      </div>
-      <div class="col-md-4">
+          <label for="number-of-rows" class="text-nowrap"># of rows:</label>
+          <input type="number" id=number-of-rows class="form-control" min="1" max="99">
       <!-- div.form-group>(label+input#numberOfCols.form-control) -->
-        <div class="form-group">
-          <label for="number-of-cols">Please enter the number of columns:</label>
-          <input type="text" id="number-of-cols" class="form-control" maxlength="2" >
+          <label for="number-of-cols" class="text-nowrap"># of columns:</label>
+          <input type="number" id="number-of-cols" class="form-control" min="1" max="99">
+          <button id="update-grid-button" class="btn btn-default">Create Grid</button>
+          <button id="clear-button" class="btn btn-default">Clear Grid</button>
         </div>
-      </div>
-      <div class="col-md-4">
-        <button id="update-grid-button" class="btn btn-default">Create Grid</button>
-      </div>
-      <div class="col-md-4">
-        <button id="clear-button" class="btn btn-default">Clear Grid</button>
       </div>
     </div>
+  </nav>
   <div class='container'>
     <div class="row">
-      <div class="col-lg-6">
+
         <table id="canvas"></table>
-      </div>
-      <div class="col-lg-6">
+        <button id="red-button" class="btn btn-danger"> Red </button>
         <button id="blue-button" class="btn btn-primary"> Blue </button>
-      </div>
-      <div class="col-lg-6">
         <button id="green-button" class="btn btn-success"> Green </button>
-      </div>
-      <div class="col-lg-6">
         <button id="orange-button" class="btn btn-warning"> Orange </button>
-      </div>
+
     </div>
   </div>
   </div>

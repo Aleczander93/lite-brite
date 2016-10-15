@@ -2,9 +2,10 @@
 
   var canvas = $('#canvas'); //my placement are + think of paper in drawing
   var updateGridButton = $ ('#update-grid-button');
-  var clearGridButton = $('#clear-button');
+  var resetGridButton = $('#reset-button');
   var numberOfColsInput = $('#number-of-cols');
   var numberOfRowsInput = $('#number-of-rows');
+  var newColor = "white";
   var redButton = $('#red-button');
   var blueButton = $('#blue-button');
   var greenButton = $('#green-button');
@@ -18,33 +19,29 @@ blueButton.on('click', blueButtonOn);
 greenButton.on('click', greenButtonOn);
 orangeButton.on('click', orangeButtonOn);
 updateGridButton.on('click', updateGridSize);
-clearGridButton.on('click', clearGridButtonOn);
+resetGridButton.on('click', resetGridButtonOn);
 
-
-
-$('#number-of-cols').keydown( function(e){
+$('#number-of-cols').keydown(function(e){
     if ($(this).val().length >= max_chars){
         $(this).val($(this).val().substr(0, max_chars));
     }
 });
-
-$('#number-of-cols').keyup( function(e){
+$('#number-of-cols').keyup(function(e){
+    if ($(this).val().length >= max_chars) {
+        $(this).val($(this).val().substr(0, max_chars));
+    }
+});
+$('#number-of-rows').keydown(function(e){
+    if ($(this).val().length >= max_chars) {
+        $(this).val($(this).val().substr(0, max_chars));
+    }
+});
+$('#number-of-rows').keyup(function(e){
     if ($(this).val().length >= max_chars) {
         $(this).val($(this).val().substr(0, max_chars));
     }
 });
 
-$('#number-of-rows').keydown( function(e){
-    if ($(this).val().length >= max_chars) {
-        $(this).val($(this).val().substr(0, max_chars));
-    }
-});
-
-$('#number-of-rows').keyup( function(e){
-    if ($(this).val().length >= max_chars) {
-        $(this).val($(this).val().substr(0, max_chars));
-    }
-});
 // $('input').on('keyup')
 // updateGridButton.attr("disabled", false);
 // clearGrid();
@@ -52,7 +49,6 @@ $('#number-of-rows').keyup( function(e){
 //if column || rows = nothing --> do not update
 
 function updateGridSize() {
-
   $('number-of-cols').keyup(function(e){
     if ($(this).val().length < max_chars) {
     $('#update-grid-button').disabled = true;
@@ -60,8 +56,6 @@ function updateGridSize() {
     $('#update-grid-button').disabled = false;
   }
   });
-
-
   $('number-of-rows').keyup(function(e){
     if ($(this).val().length < max_chars) {
     $('#update-grid-button').disabled = true;
@@ -76,25 +70,35 @@ function updateGridSize() {
   //grab number of rows from the input for the new grid
   var newRowNumber = parseInt(numberOfRowsInput.val());
   //make the new grid based on the rows of columns
+   if(isNaN(newColumnNumber) || isNaN(newRowNumber) || newColumnNumber < 1 || newRowNumber < 1) {
+     newColumnNumber = 30;
+     newRowNumber = 20;
+   }
+
   makeGrid(newRowNumber, newColumnNumber);
   $('.btn-danger').on('click', redButtonOn);
   $('.btn-primary').on('click', blueButtonOn);
   $('.btn-success').on('click', greenButtonOn);
   $('.btn-warning').on('click', orangeButtonOn);
-
 }
 
 function clearGrid(){
   canvas.empty();
 }
 
-function clearGridButtonOn(event){
-    $('.cell').off('click');
+function resetGridButtonOn(){
+  clearGrid();
+  makeGrid(newRowNumber, newColumnNumber);
+  $('.cell').on('click', changeColor);
 }
 
 function changeColor(event){
   //just this cell's background
   $(this).toggleClass('white');
+  // $(this).removeClass();
+  // $(this).addClass(function(){
+  //   return "cell" + newColor;
+  // });
 }
 
 function redButtonOn(event){
@@ -102,6 +106,7 @@ function redButtonOn(event){
   $('.cell').on('click', function(){
   $(this).toggleClass('red');
 });
+return;
 }
 
 function blueButtonOn(event){
